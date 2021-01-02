@@ -1,0 +1,16 @@
+{
+  // "include": ["day*/*"],
+  "CompilerOptions": {
+    "rootDir": "src",
+    "outDir": "build",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "esnext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "sourceMap": true
+  }
+}
