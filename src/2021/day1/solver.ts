@@ -1,14 +1,13 @@
-import * as fs from "fs";
-import * as path from "path";
+import { readFile } from "../../utils/utils";
 
-const inputArr: number[] = fs
-  .readFileSync(path.resolve(__dirname, "../../../src/2021/day1/input.txt"))
+const inputArr: number[] = readFile("2021", "day1")
   .toString()
   .split("\n")
   .map(x => Number(x));
 
 const solver1 = (measurements: number[]): number => {
   let depthIncreasesNum = 0;
+
   for (let i = 0; i < measurements.length - 1; i++) {
     if (measurements[i] < measurements[i + 1]) depthIncreasesNum++;
   }
