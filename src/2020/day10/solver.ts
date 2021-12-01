@@ -1,13 +1,13 @@
-import * as fs from 'fs';
+import * as fs from "fs";
 
 const inputArr: number[] = fs
-  .readFileSync('src/day10/input.txt')
+  .readFileSync("src/day10/input.txt")
   .toString()
-  .split('\n')
-  .map((x) => Number(x))
+  .split("\n")
+  .map(x => Number(x))
   .sort((a, b) => a - b);
 
-function solver1 (arr: number[]): number {
+function solver1(arr: number[]): number {
   let currentJolt = 0;
   let numOf1Diff = 0;
   let numOf3Diff = 1;
@@ -19,28 +19,32 @@ function solver1 (arr: number[]): number {
   return numOf1Diff * numOf3Diff;
 }
 
-function solver2 (inputArr: number[]): number {
+function solver2(inputArr: number[]): number {
   // Break the input array into multiple subarrays to improve efficiency
   // The numbers are split wherever there is a difference of 3 between numbers
   // (only one possible path)
   const subArrays = splitBy3(inputArr);
-  console.log('inputArr:', inputArr);
+  console.log("inputArr:", inputArr);
 
   let solution = 1;
   for (const subArray of subArrays) {
     solution *= solveEachArray(subArray);
-    console.log('subArray, solveEachArray(subArray):', subArray, solveEachArray(subArray));
+    console.log(
+      "subArray, solveEachArray(subArray):",
+      subArray,
+      solveEachArray(subArray)
+    );
   }
 
   return solution;
 }
 
-function splitBy3 (arr: number[]): number[][] {
+function splitBy3(arr: number[]): number[][] {
   let startIndex = 0;
   const splitArr = [];
   for (let i = 0; i < arr.length - 2; i++) {
     if (arr[i + 1] - arr[i] === 3) {
-      splitArr.push(arr.slice(startIndex,i + 1));
+      splitArr.push(arr.slice(startIndex, i + 1));
       startIndex = i + 1;
     }
   }
@@ -48,7 +52,7 @@ function splitBy3 (arr: number[]): number[][] {
   return splitArr;
 }
 
-function solveEachArray (subArray: number[]): number {
+function solveEachArray(subArray: number[]): number {
   if (subArray.length < 3) return 1; // only one possible path for arrays of length 1 or 2
   let validSolutions = 0;
   const maxNum = subArray[subArray.length - 1]; //final number of the input list
@@ -57,7 +61,11 @@ function solveEachArray (subArray: number[]): number {
   // Recursively simulate valid solutions by adding values to an array from the initial input
   // until it can no longer accept values (next number too more than 3 above the latest one)
   // or until it reaches the final number of the initial input
-  function looper (arr: number[], newArr: number[], nextIndex: number): number {
+  function looper(
+    arr: number[],
+    newArr: number[],
+    nextIndex: number
+  ): number | undefined {
     // console.log('looper launched! newArr, nextIndex:', newArr, nextIndex);
     const lastNum = newArr[newArr.length - 1];
     // The new array represents a valid solution if its last value is the same as the final number of the input list
@@ -72,12 +80,12 @@ function solveEachArray (subArray: number[]): number {
         // console.log('nextArr before the push:', nextArr, i);
         nextArr.push(arr[nextIndex + i]);
         // console.log('nextArr after the push:', nextArr, i);
-        looper (arr, nextArr, nextIndex + i + 1);
+        looper(arr, nextArr, nextIndex + i + 1);
       }
     }
   }
 
-  looper(subArray, [Math.max(minNum - 3,0)], 0);
+  looper(subArray, [Math.max(minNum - 3, 0)], 0);
 
   return validSolutions;
 }

@@ -1,6 +1,6 @@
 {
   // "include": ["day*/*"],
-  "CompilerOptions": {
+  "compilerOptions": {
     "rootDir": "src",
     "outDir": "build",
     "module": "commonjs",
