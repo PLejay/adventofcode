@@ -34,17 +34,6 @@ const solver2 = (bitList) => {
     const co2Rating = loop(bitList, 0, "most");
     const lifeSupportRating = loop(bitList, 0, "least");
     return parseInt(co2Rating, 2) * parseInt(lifeSupportRating, 2);
-    // bitList.forEach(bits => {
-    //   bits.split("").forEach((bit, i) => {
-    //     compressedArray[i] += Number(bit);
-    //   });
-    // });
-    // const epsilonArray = compressedArray.map(bit =>
-    //   bit > bitList.length / 2 ? 1 : 0
-    // );
-    // const gammaArray = epsilonArray.map(bit => (bit === 1 ? 0 : 1));
-    // return parseInt(epsilonArray.join(""), 2) * parseInt(gammaArray.join(""), 2);
-    return 0;
 };
 console.log(solver1(inputArr));
 console.log(solver2(inputArr));
