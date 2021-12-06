@@ -10,7 +10,6 @@
   "rules": {
     "keyword-spacing": "error",
     "linebreak-style": "error",
-    "semi": "error",
     "space-before-blocks": "error",
     "space-before-function-paren": ["error", "always"],
     "no-undef": "off",
