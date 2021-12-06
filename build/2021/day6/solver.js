@@ -1,62 +1,46 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
-const inputArr = (0, utils_1.readFile)("2021", "day5").toString().split("\n");
-const lines = inputArr.map(line => {
-    const convertedLine = line
-        .split(" -> ")
-        .map(coords => coords.split(",").map(x => Number(x)))
-        .flat();
-    return {
-        xStart: convertedLine[0],
-        yStart: convertedLine[1],
-        xEnd: convertedLine[2],
-        yEnd: convertedLine[3],
-    };
-});
-console.log(lines);
-const isStraightLine = (line) => line.xStart === line.xEnd || line.yStart === line.yEnd;
-const getMinMax = (line) => {
-    return {
-        xMin: Math.min(line.xStart, line.xEnd),
-        xMax: Math.max(line.xStart, line.xEnd),
-        yMin: Math.min(line.yStart, line.yEnd),
-        yMax: Math.max(line.yStart, line.yEnd),
-    };
-};
-const getGridWithNewLine = (grid, line, straightOnly) => {
-    const isStraight = isStraightLine(line);
-    // Ignore non-straight lines
-    if (straightOnly && !isStraight)
-        return grid;
-    const { xStart, yStart } = line;
-    const { xMin, xMax, yMin, yMax } = getMinMax(line);
-    return grid.map((row, y) => row.map((point, x) => {
-        if (x >= xMin &&
-            x <= xMax &&
-            y >= yMin &&
-            y <= yMax &&
-            (isStraight || Math.abs(x - xStart) === Math.abs(y - yStart))) {
-            return point + 1;
+const big_integer_1 = __importDefault(require("big-integer"));
+const inputArr = (0, utils_1.readFile)("2021", "day6")
+    .toString()
+    .split(",")
+    .map(x => Number(x));
+console.log(inputArr.length);
+const solver = (ages, numDays) => {
+    const loop = (currentAges, currentDay) => {
+        if (currentDay === numDays)
+            return currentAges.length;
+        let newFishNum = (0, big_integer_1.default)(0);
+        currentAges.forEach((age, i) => {
+            if (age === 0)
+                newFishNum = newFishNum.add(1);
+            currentAges[i] = age > 0 ? age - 1 : 6;
+        });
+        for (let i = 0; i < newFishNum.toJSNumber(); i++) {
+            currentAges.push(8);
         }
-        else {
-            return point;
-        }
-    }));
-};
-const solver = (lines, straightOnly) => {
-    const gridWidth = lines.reduce((currentMax, line) => Math.max(line.xEnd, line.xStart, currentMax), 0) + 1;
-    const gridHeight = lines.reduce((currentMax, line) => Math.max(line.yEnd, line.yStart, currentMax), 0) + 1;
-    let grid = new Array(gridHeight).fill(new Array(gridWidth).fill(0));
-    lines.forEach(line => {
-        grid = getGridWithNewLine(grid, line, straightOnly);
+        return loop(currentAges, currentDay + 1);
+    };
+    const maxAge = Math.max(...ages);
+    let initialAgeDistribution = new Array(maxAge + 1).fill(0);
+    // Get the number of fish for each initial age
+    initialAgeDistribution.forEach((age, i) => {
+        initialAgeDistribution[i] = ages.filter(a => a === i).length;
     });
-    console.log(grid
-        .map(line => line.join(""))
-        .join("\n")
-        .replaceAll("0", "."));
-    return grid.flat().reduce((acc, point) => acc + (point > 1 ? 1 : 0), 0);
+    let sumOfFish = (0, big_integer_1.default)(0);
+    // Run the loop for each initial age and multiply by the number of fish of that initial age
+    // initialAgeDistribution.forEach((fishNum, i) => {
+    //   if (fishNum > 0) {
+    //     sumOfFish = sumOfFish + BigInt(loop([i], 0) * fishNum);
+    //   }
+    // });
+    console.log(`loop[1]: ${loop([1], 0)}`);
+    return sumOfFish;
 };
-console.log(solver(lines, true));
-console.log(solver(lines, false));
+console.log(solver(inputArr, 80));
+console.log(solver(inputArr, 256));
 //# sourceMappingURL=solver.js.map
