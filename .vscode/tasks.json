@@ -23,7 +23,11 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"detail": "compiler: /usr/bin/clang++"
+			"detail": "compiler: /usr/bin/clang++",
+			"presentation": {
+				"panel": "dedicated",
+				// "focus": true;
+			}
 		}
 	]
 }
