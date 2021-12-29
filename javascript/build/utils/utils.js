@@ -19,11 +19,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.printGrid = exports.getGridDimensions = exports.readFile = void 0;
+exports.printGrid = exports.getGridDimensions = exports.createGrid = exports.readFile = void 0;
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const readFile = (year, day) => fs.readFileSync(path.resolve(__dirname, `../../src/${year}/${day}/input.txt`));
 exports.readFile = readFile;
+const createGrid = (gridWidth, gridHeight, fill) => Array.from(Array(gridHeight), () => Array(gridWidth).fill(fill));
+exports.createGrid = createGrid;
 const getGridDimensions = (grid) => {
     return { gridHeight: grid.length, gridWidth: grid[0].length };
 };
