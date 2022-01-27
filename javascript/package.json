@@ -23,7 +23,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
     "lintf": "eslint . --ext .ts --fix",
-    "prettier-format": "prettier --config .prettierrc 'src/**/solver.ts' --write"
+    "prettier-format": "prettier --config .prettierrc 'src/**/solver.ts' --write",
+    "solve": "run() { cd build/2021/day$1 && node solver.js; }; run",
+    "log": "run() { console.log($1); }; run"
   },
   "author": "",
   "license": "ISC"
