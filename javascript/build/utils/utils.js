@@ -30,8 +30,8 @@ const getGridDimensions = (grid) => {
     return { gridHeight: grid.length, gridWidth: grid[0].length };
 };
 exports.getGridDimensions = getGridDimensions;
-const printGrid = (grid) => {
-    console.log(grid.map(row => row.join("")).join("\n"));
+const printGrid = (grid, delimiter = "") => {
+    console.log(grid.map(row => row.join(delimiter)).join("\n"));
     console.log("\n");
 };
 exports.printGrid = printGrid;
