@@ -38,18 +38,6 @@ func getPriorityForPart1(itemString *string) int {
 	firstItemList := itemList[0:(len(itemList) / 2)]
 	secondItemList := itemList[(len(itemList) / 2):]
 
-	// 	var commonItemType1 rune
-
-	// Loop:
-
-	// 	for _, item := range firstItemList {
-	// 		for _, item2 := range secondItemList {
-	// 			if item == item2 {
-	// 				commonItemType1 = item
-	// 				break Loop
-	// 			}
-	// 		}
-	// 	}
 	commonItemType := findCommonItem([][]rune{firstItemList, secondItemList})
 	return getPriorityByType(commonItemType)
 }
