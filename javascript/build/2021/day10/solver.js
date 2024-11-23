@@ -13,7 +13,7 @@ const scores = {
     "}": { syntax: 1197, autocomplete: 3 },
     ">": { syntax: 25137, autocomplete: 4 },
 };
-const inputArr = (0, utils_1.readFile)("2021", "day10")
+const inputArr = utils_1.readFile("2021", "day10")
     .toString()
     .split("\n")
     .map(line => line.split(""));

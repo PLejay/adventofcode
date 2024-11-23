@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
-const inputArr = (0, utils_1.readFile)("2021", "day15")
+const inputArr = utils_1.readFile("2021", "day15")
     .toString()
     .split("\n")
     .map(row => row.split("").map(x => Number(x)));
 const solver = () => {
-    const { gridHeight, gridWidth } = (0, utils_1.getGridDimensions)(inputArr);
+    const { gridHeight, gridWidth } = utils_1.getGridDimensions(inputArr);
     let currentRecord = gridHeight * gridWidth * 9;
-    let heightMap = (0, utils_1.createGrid)(gridWidth, gridHeight, 0);
+    let heightMap = utils_1.createGrid(gridWidth, gridHeight, 0);
     // Populate the end point on the height map
     heightMap[gridHeight - 1][gridWidth - 1] =
         inputArr[gridHeight - 1][gridWidth - 1];
@@ -106,7 +106,7 @@ const solver = () => {
     for (let i = 0; i < gridHeight - 1; i++) {
         fillHeightMap(gridHeight - i - 2);
     }
-    (0, utils_1.printGrid)(heightMap, ",");
+    utils_1.printGrid(heightMap, ",");
     // printGrid(inputArr);
     return heightMap[0][0] - inputArr[0][0];
 };

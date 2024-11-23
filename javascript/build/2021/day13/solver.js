@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
-const inputArr = (0, utils_1.readFile)("2021", "day13").toString().split("\n\n");
+const inputArr = utils_1.readFile("2021", "day13").toString().split("\n\n");
 const initialDots = inputArr[0]
     .split("\n")
     .map(coords => coords.split(",").map(x => Number(x)));
@@ -48,7 +48,7 @@ const solver = (numberOfFolds) => {
     let visibleDotsNum = 0;
     const gridWidth = Math.max(...initialDots.map(dot => dot[0])) + 1;
     const gridHeight = Math.max(...initialDots.map(dot => dot[1])) + 1;
-    let grid = (0, utils_1.createGrid)(gridWidth, gridHeight, ".");
+    let grid = utils_1.createGrid(gridWidth, gridHeight, ".");
     initialDots.forEach(dot => {
         grid[dot[1]][dot[0]] = "#";
     });
@@ -58,7 +58,7 @@ const solver = (numberOfFolds) => {
             visibleDotsNum = grid.flat().filter(x => x === "#").length;
         }
     });
-    (0, utils_1.printGrid)(grid);
+    utils_1.printGrid(grid);
     return visibleDotsNum;
 };
 console.log(solver(1));

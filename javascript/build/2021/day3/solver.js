@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
-const inputArr = (0, utils_1.readFile)("2021", "day3").toString().split("\n");
+const inputArr = utils_1.readFile("2021", "day3").toString().split("\n");
 const solver1 = (bitList) => {
     let compressedArray = new Array(bitList[0].length).fill(0);
     bitList.forEach(bits => {

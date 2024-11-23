@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
-const inputArr = (0, utils_1.readFile)("2021", "day11")
+const inputArr = utils_1.readFile("2021", "day11")
     .toString()
     .split("\n")
     .map(row => row.split("").map(x => Number(x)));
-const { gridHeight, gridWidth } = (0, utils_1.getGridDimensions)(inputArr);
+const { gridHeight, gridWidth } = utils_1.getGridDimensions(inputArr);
 const solver = (initialValues, stepGoalNumber = 100) => {
     let numberOfFlashes = 0;
     let firstSimultaneousStep = 0;

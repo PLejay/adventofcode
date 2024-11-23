@@ -3,8 +3,14 @@ import * as path from "path";
 
 export const readFile = (year: string, day: string): Buffer =>
   fs.readFileSync(
-    path.resolve(__dirname, `../../src/${year}/${day}/input.txt`)
+    path.resolve(
+      __dirname,
+      `../../../adventofcode-inputs/${year}/${day}/input.txt`
+    )
   );
+
+export const readMockFile = (): Buffer =>
+  fs.readFileSync(path.resolve(__dirname, "../../src/mockInput.txt"));
 
 export const createGrid = (gridWidth: number, gridHeight: number, fill: any) =>
   Array.from(Array(gridHeight), () => Array(gridWidth).fill(fill));

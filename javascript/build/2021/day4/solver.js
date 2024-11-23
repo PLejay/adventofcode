@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
-const inputArr = (0, utils_1.readFile)("2021", "day4").toString().split("\n\n");
+const inputArr = utils_1.readFile("2021", "day4").toString().split("\n\n");
 const numbers = inputArr[0].split(",").map(x => Number(x));
 const boards = inputArr.slice(1).map(board => board.split("\n").map(line => line
     .replaceAll("  ", " ")

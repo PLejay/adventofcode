@@ -24,7 +24,7 @@ const hexToBinary = (hexValue) => {
         return hexValueMap[hexValue];
     }
 };
-const inputString = (0, utils_1.readFile)("2021", "day16")
+const inputString = utils_1.readFile("2021", "day16")
     .toString()
     .split("")
     .map(hex => hexToBinary(hex))

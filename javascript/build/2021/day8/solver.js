@@ -11,7 +11,7 @@ const digits = [
     "abdefg",
     "acf",
     "abcdefg",
-    "abcdfg", // length 6
+    "abcdfg",
 ];
 const characters = [
     "a",
@@ -20,9 +20,9 @@ const characters = [
     "d",
     "e",
     "f",
-    "g", // frequency: 7
+    "g",
 ];
-const inputArr = (0, utils_1.readFile)("2021", "day8")
+const inputArr = utils_1.readFile("2021", "day8")
     .toString()
     .split("\n")
     .map(note => {
