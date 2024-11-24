@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils/utils");
 const inputString = utils_1.readFile("2015", "day1").toString();
-// const inputString: string = readMockFile().toString();
 const solver = () => {
     let floor = 0;
     let positionOfBasementChar = 0;
