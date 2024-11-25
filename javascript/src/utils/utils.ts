@@ -12,8 +12,11 @@ export const readFile = (year: string, day: string): Buffer =>
 export const readMockFile = (): Buffer =>
   fs.readFileSync(path.resolve(__dirname, "../../src/mockInput.txt"));
 
-export const createGrid = (gridWidth: number, gridHeight: number, fill: any) =>
-  Array.from(Array(gridHeight), () => Array(gridWidth).fill(fill));
+export const createGrid = <T extends number | string>(
+  gridWidth: number,
+  gridHeight: number,
+  fill: T
+) => Array.from(Array(gridHeight), () => Array(gridWidth).fill(fill)) as T[][];
 
 export const getGridDimensions = (grid: (number | string)[][]) => {
   return { gridHeight: grid.length, gridWidth: grid[0].length };
