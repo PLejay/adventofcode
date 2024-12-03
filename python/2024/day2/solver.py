@@ -49,10 +49,5 @@ def solver(tolerance_level: int) -> int:
   return safe_sum
 
 
-
-
-
-# For some reason, the answer is off by 1
 print("part 1: ", solver(0))
-
 print("part 2: ", solver(1))
