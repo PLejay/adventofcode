@@ -1,6 +1,3 @@
-import os
-
-# Read the data
 data = open("../../../adventofcode-inputs/2024/day2/input.txt")
 lines = data.read().splitlines()
 
