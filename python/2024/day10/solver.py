@@ -36,15 +36,15 @@ def get_neighbouring_coord_list_in_bounds(current_coords: Coords) -> list[Coords
   return neighbouring_coord_list
 
 
-def get_reachable_end_coord_set_for_head(current_coords: Coords) -> set[Coords]:
-  end_coord_set = set()
+def get_reachable_end_coord_list_for_head(current_coords: Coords) -> list[Coords]:
+  end_coord_list = list()
 
   y, x = current_coords
 
   current_val = int(grid[y][x])
   if current_val == 9:
-    end_coord_set.add(current_coords)
-    return end_coord_set
+    end_coord_list.append(current_coords)
+    return end_coord_list
 
   neighbouring_coord_list = get_neighbouring_coord_list_in_bounds(current_coords)
 
@@ -58,19 +58,21 @@ def get_reachable_end_coord_set_for_head(current_coords: Coords) -> set[Coords]:
   # print(valid_neighbouring_coord_list)
 
   for valid_neighbouring_coords in valid_neighbouring_coord_list:
-    end_coord_set = end_coord_set | get_reachable_end_coord_set_for_head(valid_neighbouring_coords)
+    end_coord_list = end_coord_list + get_reachable_end_coord_list_for_head(valid_neighbouring_coords)
 
-  return end_coord_set
+  return end_coord_list
 
 def solver() -> int:
   sum_scores = 0
+  sum_ratings = 0
 
   trailhead_coord_list = get_trailhead_coord_list()
 
   for coords in trailhead_coord_list:
-    reachable_end_coord_list = get_reachable_end_coord_set_for_head(coords)
-    sum_scores += len(reachable_end_coord_list)
+    reachable_end_coord_list = get_reachable_end_coord_list_for_head(coords)
+    sum_ratings += len(reachable_end_coord_list)
+    sum_scores += len(set(reachable_end_coord_list))
 
-  return sum_scores
+  return {"part 1:": sum_scores, "part_2:": sum_ratings}
 
 print(solver())
