@@ -11,8 +11,7 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/python/2024/day9"
-    },
+      "cwd": "${workspaceFolder}/python/2024/day11" },
     {
       "name": "clang++ - Build and debug active file",
       "type": "cppdbg",
